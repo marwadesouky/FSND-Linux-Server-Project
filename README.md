@@ -21,13 +21,21 @@ switch back to ubuntu user
 ```sudo vim /etc/sudoers.d/marwa```
 type ```marwa ALL=(ALL) NOPASSWD:ALL``` into the file, save and close the file
 
-## 10 - Change ssh port from 22 to 2200
+## 10 - Change ssh port from 22 to 2200 and disable root login
+
+### Change SSH port 
 Edit the sshd_config file
 ```sudo vim /etc/ssh/sshd_config```
+
 change ```port 22``` to ```port 2200```, save and close the file 
 restart ssh service
 ```sudo service ssh restart```
 add port 2200 to lightsail instance from the network page
+
+### Disable root login
+Edit the sshd_config file
+```sudo vim /etc/ssh/sshd_config```
+set ```PermitRootLogin``` to ```no```
 
 exit of the current user and ssh again using port 2200
 ```ssh marwa@3.215.126.211 -p 2200```
@@ -47,6 +55,9 @@ Check firewall status ```sudo ufw status```
 #12 - Update installed packages
 ```sudo apt-get update```
 ```sudo apt-get upgrade```
+
+```sudo apt-get install unattended-upgrades```
+```sudo dpkg-reconfigure unattended-upgrades```
 
 ## 13 - Install apache2 and wsgi
 Install Apache: ```sudo apt-get install apache2```
@@ -189,6 +200,10 @@ application.secret_key = 'Add your secret key'
 
 Restart Apache: ```sudo service apache2 restart```
 
+#### Disable nginix
+```sudo service nginix stop```
+```sudo systemctl disable nginx```
+
 ## 18 - Update OAuth Information for Google+ and Facebook Login
 ### Google+
 Go to the google developers console for the project
@@ -224,3 +239,10 @@ Generate ssh keys:
 
 
 
+## Refrences
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04
+
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+
+
+https://www.digitalocean.com/community/questions/sites-available-and-sites-enabled
