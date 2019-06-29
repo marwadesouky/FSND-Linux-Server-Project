@@ -5,7 +5,7 @@
 ## 3 - Connect using SSH using the user ubuntu
 ## 4 - Add my public key to the /home/ubuntu/.ssh/authorized_keys file to ssh using my client
 ## 5 - SSH from local machine using 
-```ssh ubuntu@3.215.126.211 -p 22```
+```ssh ubuntu@3.220.122.27 -p 22```
 ## 6 - Create new user
 ```sudo adduser marwa```
 ## 7 - Change to user marwa
@@ -38,7 +38,7 @@ Edit the sshd_config file
 set ```PermitRootLogin``` to ```no```
 
 exit of the current user and ssh again using port 2200
-```ssh marwa@3.215.126.211 -p 2200```
+```ssh marwa@3.220.122.27 -p 2200```
 ## 11 - Configure the firewall
 ```
 sudo ufw default deny incoming
@@ -55,13 +55,11 @@ Check firewall status ```sudo ufw status```
 #12 - Update installed packages
 ```sudo apt-get update```
 ```sudo apt-get upgrade```
-
-```sudo apt-get install unattended-upgrades```
-```sudo dpkg-reconfigure unattended-upgrades```
+```sudo apt-get dist-upgrade```
 
 ## 13 - Install apache2 and wsgi
 Install Apache: ```sudo apt-get install apache2```
-To make sure it works visit http://3.215.126.211 which should render an apache page that says "It works"
+To make sure it works visit http://3.220.122.27 which should render an apache page that says "It works"
 
 Install Python mod_wsgi: ```sudo apt-get install libapache2-mod-wsgi ```
 
@@ -70,7 +68,7 @@ Install Python mod_wsgi: ```sudo apt-get install libapache2-mod-wsgi ```
 Install postgreSQL: ```sudo apt-get install postgresql postgresql-contrib```
 Basic Server Setup:
 ```sudo -u postgres psql postgres```
-```\password postgres and enter a password```
+```\password postgres``` and enter a password
 
 ### Create a new database user
 Use the following commands to create a new user
@@ -150,8 +148,8 @@ Add the following into the file:
 	#ServerName www.example.com
 
 	ServerAdmin marwadesouky96@gmail.com
-	ServerName 3.215.126.211 
-	ServerAlias 3.215.126.211.xip.io 
+	ServerName 3.220.122.27 
+	ServerAlias 3.220.122.27.xip.io 
 	WSGIScriptAlias / /var/www/catalog/catalog.wsgi
 	DocumentRoot /var/www/catalog
 	<Directory /var/www/catalog/catalog/>
@@ -208,7 +206,7 @@ Restart Apache: ```sudo service apache2 restart```
 ### Google+
 Go to the google developers console for the project
 Go to Enable and Manage APIs, then go to credentials
-Select the app and add http://3.215.126.211.xip.io	to the Authorized JavaScript origins
+Select the app and add http://3.220.122.27.xip.io	to the Authorized JavaScript origins
 and Authorized redirect URIs
 
 Go to the OAuth Consent Screen and add ```xip.io``` to the Authorized domains
@@ -246,3 +244,5 @@ https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-applicati
 
 
 https://www.digitalocean.com/community/questions/sites-available-and-sites-enabled
+
+https://www.liquidweb.com/kb/troubleshooting-please-install-available-updates-release-upgrading/
